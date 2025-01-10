@@ -366,15 +366,15 @@
 	"UUID": "com.samhorne.mediamonkey5",
 	"SDKVersion": 2,
 	"Author": "Sam Horne",
-	"URL": "https://github.com/sam-horne/streamdeck-mediamonkey5",
+	"URL": "https://github.com/sam-horne/streamdeck-mediamonkey",
 	"Category": "Mediamonkey 5",
 	"CategoryIcon": "images/plugin/category",
 	"CodePath": "plugin/index.html",
-	"Description": "MediaMonkey 5 integration for streamdeck",
+	"Description": "MediaMonkey integration for streamdeck",
 	"Name": "Mediamonkey 5",
 	"Icon": "images/plugin/plugin",
 	"PropertyInspectorPath": "pi/index.html",
-	"Version": "1.2.1.0",
+	"Version": "1.2.2.0",
 	"OS": [
 		{
 			"Platform": "windows",

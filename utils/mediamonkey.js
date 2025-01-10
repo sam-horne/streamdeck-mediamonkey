@@ -140,32 +140,32 @@ const mediamonkey = {
   },
 
   next: function () {
-    this.runInMediamonkey('player.nextAsync()');
+    this.runInMediamonkey('app.player.nextAsync()');
   },
 
   pause: function () {
-    this.runInMediamonkey('player.pauseAsync()');
+    this.runInMediamonkey('app.player.pauseAsync()');
   },
 
   play: function () {
-    this.runInMediamonkey('player.playAsync()');
+    this.runInMediamonkey('app.player.playAsync()');
   },
 
   playPause: function () {
-    this.runInMediamonkey('player.playPauseAsync()');
+    this.runInMediamonkey('app.player.playPauseAsync()');
   },
 
   prev: function () {
-    this.runInMediamonkey('player.prevAsync()');
+    this.runInMediamonkey('app.player.prevAsync()');
   },
 
   stop: function () {
-    this.runInMediamonkey('player.stopAsync()');
+    this.runInMediamonkey('app.player.stopAsync()');
   },
 
   increaseRating: function () {
     var commands = [
-      'currentTrack=player.getCurrentTrack();',
+      'currentTrack=app.player.getCurrentTrack();',
       'if (currentTrack.rating == -1){',
       '  currentTrack.rating = 10;',
       '} else if (currentTrack.rating<100) {',
@@ -178,7 +178,7 @@ const mediamonkey = {
 
   decreaseRating: function (){
    var commands = [
-      'currentTrack=player.getCurrentTrack();',
+      'currentTrack=app.player.getCurrentTrack();',
       'if (currentTrack.rating == -1){',
       '  currentTrack.rating = 0;',
       '} else if (currentTrack.rating>0) {',
@@ -193,26 +193,26 @@ const mediamonkey = {
     let nextRepeatStateId = this.repeatStateId+1;
     if (nextRepeatStateId >= this._repeatStates.name.length) nextRepeatStateId=0;
     var commands = [
-      `player.repeatPlaylist = ${this._repeatStates.repeatPlaylist[nextRepeatStateId]};`,
-      `player.repeatOne = ${this._repeatStates.repeatOne[nextRepeatStateId]};`,
+      `app.player.repeatPlaylist = ${this._repeatStates.repeatPlaylist[nextRepeatStateId]};`,
+      `app.player.repeatOne = ${this._repeatStates.repeatOne[nextRepeatStateId]};`,
     ];
     this.runInMediamonkey(commands);
   },
 
   toggleShuffle: function () {
-    this.runInMediamonkey(`player.shufflePlaylist = ${!this.shufflePlaylist};`);
+    this.runInMediamonkey(`app.player.shufflePlaylist = ${!this.shufflePlaylist};`);
   },
 
   toggleMute: function () {
-    this.runInMediamonkey(`player.mute = ${!this.mute};`);
+    this.runInMediamonkey(`app.player.mute = ${!this.mute};`);
   },
 
   changeVolume: function (newVolume) {
-    this.runInMediamonkey(`player.volume = ${newVolume};`);
+    this.runInMediamonkey(`app.player.volume = ${newVolume};`);
   },
 
   seek: function (newTimeMS) {
-    this.runInMediamonkey(`player.seekMSAsync(${newTimeMS});`);
+    this.runInMediamonkey(`app.player.seekMSAsync(${newTimeMS});`);
   },
 
   playPlaylist: function(playlistName,settings) {
@@ -226,7 +226,7 @@ const mediamonkey = {
       '      tracklist.whenLoaded().then(function () {',
       `        options = ${tracklistOptions};`,
       `        ${shuffleCommand}`,
-      '        player.addTracksAsync(tracklist,options);',
+      '        app.player.addTracksAsync(tracklist,options);',
       '      });',
       '    };',
       '  });',
@@ -242,7 +242,7 @@ const mediamonkey = {
       'tracklist.whenLoaded().then(function () {',
       `  options = ${tracklistOptions};`,
       `  ${shuffleCommand}`,
-      '  player.addTracksAsync(tracklist,options);',
+      '  app.player.addTracksAsync(tracklist,options);',
       '});',
     ];
     this.runInMediamonkey(commands);
@@ -256,7 +256,7 @@ const mediamonkey = {
       'tracklist.whenLoaded().then(function () {',
       `  options = ${tracklistOptions};`,
       `  ${shuffleCommand}`,
-      '  player.addTracksAsync(tracklist,options);',
+      '  app.player.addTracksAsync(tracklist,options);',
       '});',
     ];
     this.runInMediamonkey(commands);
@@ -267,7 +267,7 @@ const mediamonkey = {
       `app.playlists.getByTitleAsync("${playlistName}")`,
       '  .then((playlist) => {',
       '    if (playlist) {',
-      '      currentTrack=player.getCurrentTrack();',
+      '      currentTrack=app.player.getCurrentTrack();',
       '      let tracklist = playlist.getTracklist();',
       '      tracklist.whenLoaded().then(()=>{',
       '        trackIDs=tracklist.getAllValues("id");',
@@ -286,7 +286,7 @@ const mediamonkey = {
       `app.playlists.getByTitleAsync("${playlistName}")`,
       '  .then((playlist) => {',
       '    if (playlist) {',
-      '      currentTrack=player.getCurrentTrack();',
+      '      currentTrack=app.player.getCurrentTrack();',
       '      playlist.removeTrackAsync(currentTrack);',
       '    };',
       '  });',
@@ -298,14 +298,14 @@ const mediamonkey = {
    var commands = [
       'playerPromise = new Promise((resolve) => {',
       '  playerInfo = {',
-      '    currentTrack:player.getCurrentTrack(),',
-      '    trackPositionMS:player.trackPositionMS,',
-      '    isPlaying:player.isPlaying,',
-      '    repeatOne:player.repeatOne,',
-      '    repeatPlaylist:player.repeatPlaylist,',
-      '    shufflePlaylist:player.shufflePlaylist,',
-      '    mute:player.mute,',
-      '    volume:player.volume,',
+      '    currentTrack:app.player.getCurrentTrack(),',
+      '    trackPositionMS:app.player.trackPositionMS,',
+      '    isPlaying:app.player.isPlaying,',
+      '    repeatOne:app.player.repeatOne,',
+      '    repeatPlaylist:app.player.repeatPlaylist,',
+      '    shufflePlaylist:app.player.shufflePlaylist,',
+      '    mute:app.player.mute,',
+      '    volume:app.player.volume,',
       '  };',
       '  resolve(playerInfo)',
       ';})',
@@ -316,7 +316,7 @@ const mediamonkey = {
   getArtwork: function (){
    var commands = [
       'imagePromise = new Promise((resolve) => {',
-      '  const currentTrack=player.getCurrentTrack();',
+      '  const currentTrack=app.player.getCurrentTrack();',
       '  currentTrack.getThumbAsync(144, 144, function (imageLink) {',
       '    resolve(imageLink);',
       '  }); ',
@@ -420,10 +420,10 @@ const mediamonkey = {
         shuffleCommand = ';';
         break;
       case "On":
-        shuffleCommand = `player.shufflePlaylist = true;`;
+        shuffleCommand = `app.player.shufflePlaylist = true;`;
         break;
       case "Off":
-        shuffleCommand = `player.shufflePlaylist = false;`;
+        shuffleCommand = `app.player.shufflePlaylist = false;`;
         break;
     }
     return shuffleCommand;
