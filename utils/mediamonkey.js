@@ -163,26 +163,28 @@ const mediamonkey = {
     this.runInMediamonkey('app.player.stopAsync()');
   },
 
-  increaseRating: function () {
+  increaseRating: function (ratingStep) {
+    ratingStep = ratingStep*20;
     var commands = [
       'currentTrack=app.player.getCurrentTrack();',
       'if (currentTrack.rating == -1){',
-      '  currentTrack.rating = 10;',
+      `  currentTrack.rating = ${ratingStep};`,
       '} else if (currentTrack.rating<100) {',
-      '  currentTrack.rating += 10;',
+      `  currentTrack.rating += ${ratingStep};`,
       '}',
       'currentTrack.commitAsync();'
     ];
     this.runInMediamonkey(commands);
   },
 
-  decreaseRating: function (){
-   var commands = [
+  decreaseRating: function (ratingStep){
+    ratingStep = ratingStep*20;
+    var commands = [
       'currentTrack=app.player.getCurrentTrack();',
       'if (currentTrack.rating == -1){',
       '  currentTrack.rating = 0;',
       '} else if (currentTrack.rating>0) {',
-      '  currentTrack.rating -= 10;',
+      `  currentTrack.rating -= ${ratingStep};`,
       '}',
       'currentTrack.commitAsync();'
     ];

@@ -1,9 +1,10 @@
 class IncreaseRatingAction {
   type = "com.samhorne.mediamonkey5.increaserating";
 
-  onKeyDown = (context) => {
+  onKeyDown = (context,settings) => {
     try{
-      mediamonkey.increaseRating();
+      const ratingStep = (settings.ratingStep===undefined) ? defaults.ratingStep : settings.ratingStep
+      mediamonkey.increaseRating(ratingStep);
     }catch{
       plugin.showAlert(context);
     }

@@ -1,6 +1,7 @@
 const defaults = {
   maxTitleWidth: 9,
   maxTitleLines: 4,
+  ratingStep: 0.5,
   volumeStep: 10,
   volume: 100,
   seekStep: 10,

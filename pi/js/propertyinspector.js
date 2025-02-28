@@ -26,6 +26,9 @@ class PropertyInspector extends WebSocketUtils {
       setupCheckbox("display-album-checkbox","showAlbum",defaults.showAlbum);
       setupInput("title-width-input","maxTitleWidth",defaults.maxTitleWidth,true)
       setupInput("title-lines-input","maxTitleLines",defaults.maxTitleLines,true)
+    } else if(action == actions.increaserating || action == actions.decreaserating) {
+      setupDisplay("rating-step");
+      setupInput("rating-step-increment-select","ratingStep",defaults.ratingStep)    
     } else if(action == actions.volumeup || action == actions.volumedown) {
       setupDisplay("volume");
       setupInput("volume-step-input","volumeStep",defaults.volumeStep,true)
