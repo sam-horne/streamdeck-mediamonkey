@@ -2,6 +2,7 @@ const actions = Object.freeze({
   nowplaying: "com.samhorne.mediamonkey5.nowplaying",
   increaserating: "com.samhorne.mediamonkey5.increaserating",
   decreaserating: "com.samhorne.mediamonkey5.decreaserating",
+  setrating: "com.samhorne.mediamonkey5.setrating",
   volumeup: "com.samhorne.mediamonkey5.volumeup",
   volumedown: "com.samhorne.mediamonkey5.volumedown",
   setvolume: "com.samhorne.mediamonkey5.setvolume",

@@ -28,7 +28,10 @@ class PropertyInspector extends WebSocketUtils {
       setupInput("title-lines-input","maxTitleLines",defaults.maxTitleLines,true)
     } else if(action == actions.increaserating || action == actions.decreaserating) {
       setupDisplay("rating-step");
-      setupInput("rating-step-increment-select","ratingStep",defaults.ratingStep)    
+      setupInput("rating-step-increment-select","ratingStep",defaults.ratingStep)
+    } else if(action == actions.setrating) {
+      setupDisplay("rating-set");
+      setupInput("rating-set-select","rating",defaults.rating) 
     } else if(action == actions.volumeup || action == actions.volumedown) {
       setupDisplay("volume");
       setupInput("volume-step-input","volumeStep",defaults.volumeStep,true)

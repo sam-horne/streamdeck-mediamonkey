@@ -163,6 +163,16 @@ const mediamonkey = {
     this.runInMediamonkey('app.player.stopAsync()');
   },
 
+  setRating: function (rating) {
+    rating=rating*20;
+    var commands = [
+      'currentTrack=app.player.getCurrentTrack();',
+      `currentTrack.rating = ${rating};`,
+      'currentTrack.commitAsync();'
+    ];
+    this.runInMediamonkey(commands);
+  },
+
   increaseRating: function (ratingStep) {
     ratingStep = ratingStep*20;
     var commands = [

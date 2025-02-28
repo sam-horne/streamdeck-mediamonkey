@@ -99,6 +99,20 @@
 			"UUID": "com.samhorne.mediamonkey5.rating"
 		},
 		{
+			"Icon": "images/rating/actions/rating",
+			"Name": "Set Rating",
+			"States": [
+				{
+					"Image": "images/rating/keys/rating",
+					"TitleAlignment": "middle",
+					"FontSize": 13
+				}
+			],
+			"SupportedInMultiActions": false,
+			"Tooltip": "Set rating of current track.",
+			"UUID": "com.samhorne.mediamonkey5.setrating"
+		},
+		{
 			"Icon": "images/rating/actions/increaserating",
 			"Name": "Increase rating",
 			"States": [
@@ -374,7 +388,7 @@
 	"Name": "Mediamonkey 5",
 	"Icon": "images/plugin/plugin",
 	"PropertyInspectorPath": "pi/index.html",
-	"Version": "1.2.3.0",
+	"Version": "1.2.4.0",
 	"OS": [
 		{
 			"Platform": "windows",

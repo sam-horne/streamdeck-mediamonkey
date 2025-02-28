@@ -8,6 +8,7 @@ let actions = {
   ratingAction: new RatingAction(),
   increaseRatingAction: new IncreaseRatingAction(),
   decreaseRatingAction: new DecreaseRatingAction(),
+  setRatingAction: new SetRatingAction(),
   nowPlayingAction: new NowPlayingAction(),
   timeAction: new TimeAction(),
   repeatAction: new RepeatAction(),
@@ -27,6 +28,7 @@ let actions = {
 
 let contexts = {
   ratingAction: [],
+  setRatingAction: [],
   nowPlayingAction: [],
   timeAction: [],
   repeatAction: [],
